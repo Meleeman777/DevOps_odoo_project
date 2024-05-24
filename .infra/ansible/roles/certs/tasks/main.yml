@@ -1,0 +1,19 @@
+- name: update
+  apt:
+    update_cache: true
+- name: "Install packages"
+  apt: "name={{ item }} state=present"
+  with_items:
+    - certbot
+    - python3-certbot-nginx
+- name: "Create Certs"
+  command: certbot --nginx -n -d app.{{ ansible_host }}.nip.io --agree-tos --register-unsafely-without-email
+- name: "Create cron renew"
+  cron:
+    name: "renew certs"
+    minute: "0"
+    hour: "0"
+    day: "1"
+    month: "*"
+    weekday: "*"
+    job: "certbot renew --dry-run"

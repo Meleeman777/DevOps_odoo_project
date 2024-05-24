@@ -1,0 +1,24 @@
+- name: Create new user
+  user:
+    name: "{{ item }}"
+    shell: /bin/bash
+    state: present
+    create_home: true
+  loop:  "{{ users }}"
+- name: Add .ssh directories
+  file:
+    path: "/home/{{ item }}/.ssh"
+    state: directory
+    mode: 0700
+    owner: "{{ item }}"
+  loop:  "{{ users }}"
+- name: Add keys
+  lineinfile:
+    dest: "/home/{{ item }}/.ssh/authorized_keys"
+    state: present
+    create: yes
+    line: "{{ auth_key }}"
+    owner: "{{ item }}"
+    mode: 0644
+  when: auth_key is defined
+  loop: "{{ users }}"

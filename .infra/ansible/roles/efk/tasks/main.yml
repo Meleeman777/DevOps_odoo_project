@@ -1,0 +1,28 @@
+- name: Create directory
+  file:
+    path: /var/log/odoo
+    mode: '0644'
+    owner: app
+    group: app
+    state: directory
+- name: Create log file
+  file:
+    path: /var/log/odoo/odoo-server-error.log
+    mode: '0644'
+    owner: app
+    group: app
+    state: touch
+- name: Copy Compose Files
+  copy:
+    src: "{{ item }}"
+    dest: /home/ubuntu
+  with_items:
+    - "{{ fluentd_path }}"
+    - "{{ efk_path }}"
+
+- name: Start Compose
+  community.docker.docker_compose:
+    project_src: "{{ remote_dest }}"
+    files:
+      - efk-compose.yml
+

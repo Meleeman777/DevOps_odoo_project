@@ -1,0 +1,9 @@
+.infra/ansible/ansible.cfg
+.infra/ansible/.vault_pass
+.infra/ansible/terraform.tfstate
+.infra/ansible/hosts.ini
+.infra/terraform/key.json
+.infra/terraform/terraform.tfstate
+.infra/terraform/terraform.tfvars
+.infra/terraform/terraform.lock.hcl
+.infra/terraform/.terraform

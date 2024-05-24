@@ -1,0 +1,3 @@
+nginx_server: default.conf
+site_available: /etc/nginx/sites-available
+site_enabled: /etc/nginx/sites-enabled

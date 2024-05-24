@@ -1,0 +1,13 @@
+- name: Copy Compose Files
+  copy:
+    src: "{{ item }}"
+    dest: /home/ubuntu
+  with_items:
+    - "{{ graf_configs }}"
+    - "{{ graf_compose_yml_path }}"
+
+- name: Start Compose
+  docker_compose:
+    project_src: /home/ubuntu
+    files:
+      - "{{ graf_compose_yml }}"

@@ -1,0 +1,13 @@
+- name: Copy Compose Files
+  copy:
+    src: "{{ item }}"
+    dest: /home/ubuntu
+  with_items:
+    - "{{ prom_config }}"
+    - "{{ prom_compose_yml_path }}"
+
+- name: Start Compose
+  docker_compose:
+    project_src: /home/ubuntu
+    files:
+      - "{{ prom_compose_yml }}"

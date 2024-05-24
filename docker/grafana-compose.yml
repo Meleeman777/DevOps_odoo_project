@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  grafana: 
+    container_name: grafana
+    image: grafana/grafana-oss:9.5.19
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_storage:/var/lib/grafana
+      - ./config/grafana/provisioning/:/etc/grafana/provisioning/
+    networks:
+      - efk
+
+volumes:
+  grafana_storage:
+networks:
+  efk:

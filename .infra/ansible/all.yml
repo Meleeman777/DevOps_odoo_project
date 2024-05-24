@@ -1,0 +1,22 @@
+- name: Deploy Users and nginx
+  hosts: yandex
+  remote_user: ubuntu
+  become: true
+  roles:
+    - users
+    - nginx
+      # - certs
+- name: Deploy Postgres and docker
+  hosts: yandex
+  remote_user: ubuntu
+  roles:
+    - postgres
+    - docker
+- name: Deploy Monitoring
+  hosts: yandex
+  remote_user: ubuntu
+  become: true
+  roles:
+    - efk
+    - prometheus
+    - grafana

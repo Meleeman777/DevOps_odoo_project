@@ -1,0 +1,3 @@
+graf_compose_yml_path: /home/rebrain/final/grafana-compose.yml
+graf_configs: /home/rebrain/final/config
+graf_compose_yml: grafana-compose.yml

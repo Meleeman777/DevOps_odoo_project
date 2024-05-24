@@ -1,0 +1,4 @@
+db_name: app
+db_user: app
+pg_conf: pg_hba.conf
+pg_path: /etc/postgresql/14/main

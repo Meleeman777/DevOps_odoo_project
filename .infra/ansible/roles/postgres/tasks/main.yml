@@ -1,0 +1,41 @@
+- name: update
+  apt:
+    update_cache: true
+  become: true
+- name: "Install packages"
+  apt: "name={{ item }} state=present"
+  with_items:
+    - postgresql
+    - postgresql-client
+    - postgresql-server-dev-14
+    - python3-pip
+    - python3-psycopg2
+    - policykit-1
+  become: true
+
+- name: "Create db user"
+  postgresql_user:
+    state: present
+    name: "{{ db_user }}"
+  become: true
+  become_user: postgres
+
+- name: "Create app database"
+  postgresql_db:
+    state: present
+    name: "{{ db_name }}"
+    owner: "{{ db_user }}"
+  become: true
+  become_user: postgres
+
+- name: "Change config"
+  template:
+    src: "{{ pg_conf }}.j2"
+    dest: "{{ pg_path }}/{{ pg_conf }}"
+  become: true
+
+- name: "Restart Postgres"
+  service:
+    name: postgresql
+    state: restarted
+  become: true
