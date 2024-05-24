@@ -1,3 +1,3 @@
-fluentd_path: /home/rebrain/final/fluentd
-efk_path: /home/rebrain/final/efk-compose.yml
+fluentd_path: /home/rebrain/final/docker/fluentd
+efk_path: /home/rebrain/final/docker/efk-compose.yml
 remote_dest: /home/ubuntu
