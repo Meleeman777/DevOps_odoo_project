@@ -7,7 +7,8 @@
     - certbot
     - python3-certbot-nginx
 - name: "Create Certs"
-  command: certbot --nginx -n -d app.{{ ansible_host }}.nip.io --agree-tos --register-unsafely-without-email
+  command: certbot --nginx -n -d app.{{ ansible_host }}.nip.io --agree-tos --register-unsafely-without-email --no-redirect
+  notify: reload nginx
 - name: "Create cron renew"
   cron:
     name: "renew certs"

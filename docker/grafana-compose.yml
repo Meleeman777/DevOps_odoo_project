@@ -8,6 +8,8 @@ services:
     volumes:
       - grafana_storage:/var/lib/grafana
       - ./config/grafana/provisioning/:/etc/grafana/provisioning/
+      - ./config/grafana/dashboards:/var/lib/grafana/dashboards
+      - ./config/grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
     networks:
       - efk
 
