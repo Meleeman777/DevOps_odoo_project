@@ -25,6 +25,7 @@
     - libldap2-dev
     - libpq-dev
     - libsasl2-dev
+    - pylint
 - name: "Install Python packages"
   pip:
     name: "{{ item }}"
@@ -36,4 +37,3 @@
     - docker
     - docker-compose
     - requests
-    - pylint
