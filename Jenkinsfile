@@ -4,7 +4,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 sh 'rm -rf .infra/ docker/ down.sh up.sh Jenkinsfile .gitignore .git/'
-                sh 'cp -r /opt/workspace/odoo-project /opt'
+                sh 'mv /opt/workspace/odoo-project /opt'
                 sh 'sudo chown -R app:app /opt/odoo-project'
                 }
             }
