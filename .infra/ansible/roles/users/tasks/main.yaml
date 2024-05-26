@@ -1,10 +1,26 @@
-- name: Create new user
+- name: Make sure we have a 'rebrain' group
+  group:
+    name: rebrain
+    state: present
+
+- name: Allow 'rebrain' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%rebrain'
+    line: '%rebrain ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: Add sudoers users to rebrain group
   user:
     name: "{{ item }}"
     shell: /bin/bash
+    groups: rebrain
+    append: yes
     state: present
-    create_home: true
+    createhome: yes
   loop:  "{{ users }}"
+
 - name: Add .ssh directories
   file:
     path: "/home/{{ item }}/.ssh"
@@ -12,6 +28,7 @@
     mode: 0700
     owner: "{{ item }}"
   loop:  "{{ users }}"
+
 - name: Add keys
   lineinfile:
     dest: "/home/{{ item }}/.ssh/authorized_keys"
@@ -22,3 +39,4 @@
     mode: 0644
   when: auth_key is defined
   loop: "{{ users }}"
+

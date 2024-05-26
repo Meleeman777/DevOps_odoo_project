@@ -1,0 +1,9 @@
+java_apt : openjdk-11-jre-headless
+agent_url: http://159.253.18.53:8080/jnlpJars/agent.jar
+master_ip: http://159.253.18.53:8080/
+agent_name: Rebrain
+script_path: /usr/local/jenkins-service/start-agent.sh
+user: cicd
+systemd_path: /etc/systemd/system/jenkins-agent.service
+script_folder: /usr/local/jenkins-service
+

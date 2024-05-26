@@ -43,20 +43,6 @@ resource "yandex_compute_instance" "final-vm" {
   }
 }
 
-data "aws_route53_zone" "primary" {
-	name = "devops.rebrain.srwx.net"
-}
-
-
-resource "aws_route53_record" "final" {
-	zone_id = data.aws_route53_zone.primary.zone_id
-	name    = "meleemanhs_at_mail.com.devops.rebrain.srwx.net"
-	type    = "A"
-	ttl     = "300"
-	records = [yandex_compute_instance.final-vm.network_interface.0.nat_ip_address]
-}
-
-
 resource "local_file" "ansible_inventory" {
   content = templatefile("inventory.tftpl",
     {

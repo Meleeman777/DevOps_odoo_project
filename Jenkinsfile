@@ -1,11 +1,12 @@
 pipeline {
-    agent any
-
+    agent { node { label 'Rebrain' } }
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'chown -R app:app /opt/odoo-project'
+                }
             }
         }
     }
-}
+
+

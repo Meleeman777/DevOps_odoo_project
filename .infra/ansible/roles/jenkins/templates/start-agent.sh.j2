@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /usr/local/jenkins-service
+curl -sO {{ agent_url }}
+java -jar agent.jar -url {{ master_ip }} -secret {{ secret_agent }} -name {{ agent_name }} -workDir "/home/cicd"
+exit 0

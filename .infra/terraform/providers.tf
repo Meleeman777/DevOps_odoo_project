@@ -18,15 +18,3 @@ provider "yandex" {
 data "yandex_compute_image" "my_image" {
   family = var.family
 }
-
-output "my_image_id" {
-  value = data.yandex_compute_image.my_image.id
-
-
-}
-
-provider "aws" {
-  region = var.region
-  access_key = var.access_key
-  secret_key = var.secret_key
-}
