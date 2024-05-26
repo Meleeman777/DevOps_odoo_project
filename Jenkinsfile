@@ -10,7 +10,7 @@ pipeline {
             }
         stage ('Build') {
             steps {
-                sh 'source /opt/odoo-project/script.sh'
+                sh '/opt/odoo-project/script.sh'
             }
         }
         stage ('Test') {
