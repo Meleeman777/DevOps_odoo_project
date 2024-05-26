@@ -13,7 +13,7 @@ pipeline {
                 sh './opt/odoo-project/script.sh'
             }
         }
-        stege ('Start') {
+        stage ('Start') {
             steps {
                 sh 'sudo systemctl start odoo.service'
             }
