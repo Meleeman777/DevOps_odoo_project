@@ -1,12 +1,23 @@
 pipeline {
     agent { node { label 'Rebrain' } }
     stages {
-        stage('Build') {
+        stage('Prepare') {
             steps {
-                sh 'chown -R app:app /opt/odoo-project'
+                sh 'rm -rf .infra/ docker/ down.sh up.sh Jenkinsfile .gitignore .git/'
+                sh 'copy -r /opt/workspace/odoo-project /opt/odoo-project'
+                sh 'sudo chown -R app:app /opt/odoo-project'
                 }
             }
+        stage ('Build') {
+            steps {
+                sh './opt/odoo-project/script.sh'
+            }
+        }
+        stege ('Start') {
+            steps {
+                sh 'sudo systemctl start odoo.service'
+            }
+        }
+        
         }
     }
-
-
