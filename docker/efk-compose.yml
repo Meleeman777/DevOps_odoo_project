@@ -11,13 +11,17 @@ services:
       - ./fluentd/conf/fluent.conf:/fluentd/etc/fluent.conf
       - /var/log/odoo/odoo-server-error.log:/var/log/odoo/odoo-server-error.log
     ports:
-      - "24224:24224"
-      - "24224:24224/udp"
+      - "127.0.0.1:24224:24224"
+      - "127.0.0.1:24224:24224/udp"
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "5"
+    deploy:
+      resources:
+        limits:
+          memory: 100M
     networks:
       - efk
   elasticsearch:
@@ -34,6 +38,12 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
       - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "127.0.0.1:9200:9200"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
     networks:
       - efk
   kibana:
@@ -51,7 +61,11 @@ services:
         fluentd-address: localhost:24224
         tag: kibana
     ports:
-      - "5601:5601"
+      - "127.0.0.1:5601:5601"
+    deploy:
+      resources:
+        limits:
+          memory: 250M
     networks:
       - efk
 volumes:

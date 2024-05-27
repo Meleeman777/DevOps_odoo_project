@@ -1,0 +1,13 @@
+- name: Allow localhost port
+  iptables:
+    chain: INPUT
+    source: 127.0.0.1
+    protocol: tcp
+    destination_port: 8069
+    jump: ACCEPT
+- name: block apps port
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 8069
+    jump: DROP

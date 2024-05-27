@@ -1,0 +1,11 @@
+- name: Copy Service
+  copy:
+    src: odoo.service
+    dest: /etc/systemd/system
+- name: Start Service
+  service:
+    name: odoo.service
+    state: reloaded
+
+ 
+

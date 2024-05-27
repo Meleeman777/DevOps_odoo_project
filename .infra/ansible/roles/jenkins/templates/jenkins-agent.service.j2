@@ -1,0 +1,11 @@
+[Unit]
+Description=Jenkins Agent
+
+[Service]
+User={{ user }}
+WorkingDirectory=/home/cicd
+ExecStart=/bin/bash {{ script_path }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

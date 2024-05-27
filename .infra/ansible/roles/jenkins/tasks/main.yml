@@ -1,0 +1,27 @@
+- name: Create folder 
+  file:
+    path: '{{ script_folder}}'
+    state: directory
+    owner: cicd
+    group: cicd
+    mode: 0775
+- name: Copy script
+  template:
+    src: start-agent.sh.j2
+    dest: '{{ script_folder }}/start-agent.sh'
+    mode: 0777
+- name: Change permission 
+  file:
+    path: /opt
+    mode: 0777
+    state: directory
+- name: Copy systemd file
+  template:
+    src: jenkins-agent.service.j2
+    dest: '{{ systemd_path }}'
+- name: Start
+  service:
+    name: jenkins-agent.service
+    state: started
+
+

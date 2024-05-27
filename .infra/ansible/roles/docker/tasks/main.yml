@@ -8,31 +8,17 @@
     repo: deb https://download.docker.com/linux/ubuntu focal stable
     state: present
   become: true
-- name: Update apt and install docker-ce
+- name: Update apt and install packages
   apt:
     name: "{{ item }}"
     state: latest
     update_cache: true
   become: true
-  with_items:
-    - docker
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - software-properties-common
-    - docker-compose
-    - python3-pip
-    - libldap2-dev
-    - libpq-dev
-    - libsasl2-dev
+  loop: "{{ packages }}"
 - name: "Install Python packages"
   pip:
     name: "{{ item }}"
     state: present
     extra_args: --upgrade
     executable: pip3
-  with_items:
-    - pyopenssl
-    - docker
-    - docker-compose
-    - requests
+  loop: "{{ pip_modules }}"
