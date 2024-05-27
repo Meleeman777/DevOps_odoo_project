@@ -4,6 +4,7 @@
   become: true
   roles:
     - users
+    - systemd
 - name: Deploy Postgres and docker
   hosts: yandex
   remote_user: ubuntu
@@ -21,5 +22,4 @@
     - efk
     - prometheus
     - grafana
-    - systemd
     - network
