@@ -8,7 +8,7 @@ resource "yandex_compute_instance" "final-vm" {
   }
   resources {
     cores  = 2
-    memory = 3
+    memory = 4
 
   }
 

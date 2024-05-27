@@ -4,8 +4,7 @@
   become: true
   roles:
     - users
-    - nginx
-    - certs
+    - systemd
 - name: Deploy Postgres and docker
   hosts: yandex
   remote_user: ubuntu
@@ -17,9 +16,10 @@
   remote_user: ubuntu
   become: true
   roles:
+    - jenkins
+    - nginx
+    - certs
     - efk
     - prometheus
     - grafana
-    - jenkins
-    - systemd
     - network
