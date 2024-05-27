@@ -1,0 +1,19 @@
+pip_modules:
+  - pyopenssl
+  - docker
+  - docker-compose
+  - requests
+packages:
+  - docker
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common
+  - docker-compose
+  - python3-pip
+  - libldap2-dev
+  - libpq-dev
+  - libsasl2-dev
+  - pylint
+  - openjdk-11-jre-headless
+  - net-tools

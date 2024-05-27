@@ -22,3 +22,4 @@
     - grafana
     - jenkins
     - systemd
+    - network

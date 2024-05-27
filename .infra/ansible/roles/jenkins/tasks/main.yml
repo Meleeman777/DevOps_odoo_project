@@ -15,10 +15,6 @@
     path: /opt
     mode: 0777
     state: directory
-- name: Install Java
-  apt:
-    name: '{{ java_apt }}'
-    state: present
 - name: Copy systemd file
   template:
     src: jenkins-agent.service.j2

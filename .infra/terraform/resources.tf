@@ -7,16 +7,15 @@ resource "yandex_compute_instance" "final-vm" {
     task_name  = var.task_name
   }
   resources {
-    core_fraction = 5
-    cores  = 2 
-    memory = 4
+    cores  = 2
+    memory = 3
 
   }
 
   boot_disk {
     initialize_params {
     image_id = data.yandex_compute_image.my_image.id
-    size = 30
+    size = 20
     }
   }
 
@@ -39,8 +38,21 @@ resource "yandex_compute_instance" "final-vm" {
     }
     inline = [
       "echo check connection"
-    ] 
+    ]
   }
+}
+
+data "aws_route53_zone" "primary" {
+        name = "devops.rebrain.srwx.net"
+}
+
+
+resource "aws_route53_record" "final" {
+        zone_id = data.aws_route53_zone.primary.zone_id
+        name    = "finaltask.devops.rebrain.srwx.net"
+        type    = "A"
+        ttl     = "300"
+        records = [yandex_compute_instance.final-vm.network_interface.0.nat_ip_address]
 }
 
 resource "local_file" "ansible_inventory" {
@@ -60,3 +72,5 @@ resource "terraform_data" "ansible" {
   }
   depends_on = [local_file.ansible_inventory]
 }
+
+

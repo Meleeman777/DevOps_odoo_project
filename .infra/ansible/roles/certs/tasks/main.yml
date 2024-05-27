@@ -1,13 +1,10 @@
-- name: update
-  apt:
-    update_cache: true
 - name: "Install packages"
   apt: "name={{ item }} state=present"
   with_items:
     - certbot
     - python3-certbot-nginx
 - name: "Create Certs"
-  command: certbot --nginx -n -d app.{{ ansible_host }}.nip.io --agree-tos --register-unsafely-without-email --no-redirect
+  command: certbot --nginx -n -d finaltask.devops.rebrain.srwx.net --agree-tos --register-unsafely-without-email --no-redirect
   notify: reload nginx
 - name: "Create cron renew"
   cron:

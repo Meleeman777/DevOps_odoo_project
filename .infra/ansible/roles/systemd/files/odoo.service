@@ -4,7 +4,7 @@ Description=Server for listening on 8069 port
 [Service]
 User=app
 ExecStart=python3 odoo-bin --addons-path=addons --database app --db_user app -i base
-WorkingDirectory=/opt/odoo-project/odoo-project
+WorkingDirectory=/opt/odoo-project
 StandardOutput=append:/var/log/odoo/odoo-server.log
 StandardError=append:/var/log/odoo/odoo-server-error.log
 Restart=always

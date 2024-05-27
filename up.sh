@@ -1,4 +1,3 @@
-##!/bin/bash
-#docker stop $(docker ps -aq) docker rm $(docker ps -aq)
-#docker compose -f efk.compose.yml up -d --no-deps  --force-recreate --build
-#docker compose -f app.compose.yml up -d --no-deps  --force-recreate --build
+#!/bin/bash
+cd .infra/terraform && terraform apply -auto-approve
+curl -X POST "http://meleeman:$JENKINSTOKEN@localhost:8080/job/odoo-project/build"
