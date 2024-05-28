@@ -4,7 +4,7 @@
     - certbot
     - python3-certbot-nginx
 - name: "Create Certs"
-  command: certbot --nginx -n -d finaltask.devops.rebrain.srwx.net --agree-tos --register-unsafely-without-email --no-redirect
+  command: certbot --nginx -n -d finaldevopsrebrain.devops.rebrain.srwx.net --agree-tos --register-unsafely-without-email --no-redirect
   notify: reload nginx
 - name: "Create cron renew"
   cron:
