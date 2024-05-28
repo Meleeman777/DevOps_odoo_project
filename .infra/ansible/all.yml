@@ -1,4 +1,4 @@
-- name: Deploy Users and nginx
+- name: Deploy Users and Systemd
   hosts: yandex
   remote_user: ubuntu
   become: true
@@ -11,15 +11,15 @@
   roles:
     - postgres
     - docker
-- name: Deploy Monitoring
+- name: Deploy Monitoring and Network
   hosts: yandex
   remote_user: ubuntu
   become: true
   roles:
     - jenkins
     - nginx
-    - certs
     - efk
     - prometheus
     - grafana
     - network
+      #- certs

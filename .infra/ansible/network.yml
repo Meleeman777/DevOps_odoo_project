@@ -1,7 +1,0 @@
-- name: Deploy Users and nginx
-  hosts: yandex
-  remote_user: ubuntu
-  become: true
-  roles:
-    - network 
-
