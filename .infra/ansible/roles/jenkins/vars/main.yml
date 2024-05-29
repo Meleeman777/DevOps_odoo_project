@@ -6,4 +6,3 @@ script_path: /usr/local/jenkins-service/start-agent.sh
 user: cicd
 systemd_path: /etc/systemd/system/jenkins-agent.service
 script_folder: /usr/local/jenkins-service
-
