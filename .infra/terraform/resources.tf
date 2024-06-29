@@ -49,7 +49,7 @@ data "aws_route53_zone" "primary" {
 
 resource "aws_route53_record" "final" {
         zone_id = data.aws_route53_zone.primary.zone_id
-        name    = "finaldevopsrebrain.devops.rebrain.srwx.net"
+        name    = "var.devopsname"
         type    = "A"
         ttl     = "300"
         records = [yandex_compute_instance.final-vm.network_interface.0.nat_ip_address]
